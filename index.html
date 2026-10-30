@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body data-page="index">
 <div class="page-wrap">
@@ -17,6 +17,12 @@
     <h1 class="site-title">魔法藥草筆記</h1>
     <p class="site-subtitle">Grimoire Herbarium · 以掌管行星、元素與魔法屬性編纂之秘典</p>
   </header>
+
+  <div class="toolbar">
+    <a class="btn" href="edit.html">✎ 編纂新條目</a>
+    <button type="button" class="btn ghost" id="btn-export">⤓ 導出備份</button>
+    <label class="btn ghost file-btn">⤒ 導入備份<input type="file" id="import-file" accept="application/json,.json" hidden></label>
+  </div>
 
   <section class="paper filter-panel">
     <div class="filter-row">
@@ -40,10 +46,10 @@
 
   <main class="herb-grid" id="herb-grid"></main>
 
-  <footer class="site-footer">✦ 編輯 <code>data/herbs.js</code> 即可增修藥草條目 · 託管於 GitHub Pages ✦</footer>
+  <footer class="site-footer">✦ 自行編纂之條目儲存於本機瀏覽器，請定期「導出備份」✦</footer>
 </div>
 
-<script src="data/herbs.js"></script>
-<script src="assets/app.js"></script>
+<script src="herbs.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

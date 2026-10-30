@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>編纂條目 · 魔法藥草筆記</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="edit">
+<div class="page-wrap">
+
+  <nav class="back-nav"><a href="index.html">❧ 返回目錄</a></nav>
+
+  <article class="paper herb-article">
+    <h1 class="editor-title" id="editor-title">✎ 編纂新條目</h1>
+    <div class="divider-orn">✦ ✦ ✦</div>
+
+    <form id="editor-form" novalidate>
+      <div class="form-row two-col">
+        <div class="field"><label>中文名稱 <b class="req">*</b></label><input type="text" id="f-name"></div>
+        <div class="field"><label>英文名</label><input type="text" id="f-english" placeholder="Basil"></div>
+      </div>
+      <div class="field"><label>學名（斜體顯示）</label><input type="text" id="f-latin" placeholder="Ocimum spp."></div>
+
+      <div class="form-row two-col">
+        <div class="field">
+          <label>掌管行星</label>
+          <select id="f-planet">
+            <option>太陽</option><option>月亮</option><option>水星</option><option>金星</option>
+            <option selected>火星</option><option>木星</option><option>土星</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>代表元素</label>
+          <select id="f-element">
+            <option selected>火</option><option>水</option><option>風</option><option>土</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field"><label>相關神靈（以「、」分隔）</label>
+        <input type="text" id="f-deities" placeholder="拉克希米（Lakshmi）、毗濕奴（Vishnu）"></div>
+      <div class="field"><label>魔法屬性（以「、」分隔）</label>
+        <input type="text" id="f-props" placeholder="保護、療癒、愛情、財富"></div>
+
+      <div class="field">
+        <label>藥草圖片</label>
+        <input type="file" id="f-image" accept="image/*">
+        <div id="img-preview" class="img-preview"></div>
+      </div>
+
+      <h2 class="section-title">內文章節</h2>
+      <div id="sections-list"></div>
+      <button type="button" class="btn ghost" id="add-section">＋ 新增章節</button>
+
+      <h2 class="section-title">配方 RECIPES</h2>
+      <div id="recipes-list"></div>
+      <button type="button" class="btn ghost" id="add-recipe">＋ 新增配方</button>
+
+      <div class="form-actions">
+        <button type="submit" class="btn">✦ 儲存條目</button>
+        <a class="btn ghost" href="index.html">取消</a>
+      </div>
+      <p class="form-hint">儲存後條目會寫入本機瀏覽器（書籍內建條目除外）。圖片會自動壓縮。</p>
+    </form>
+  </article>
+</div>
+
+<script src="herbs.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

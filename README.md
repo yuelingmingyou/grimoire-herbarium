@@ -1,53 +1,45 @@
 # 魔法藥草筆記 · Grimoire Herbarium
 
-以 GitHub Pages 托管的靜態網站，用來整理魔法藥草筆記。羊皮紙 × 煉金術風格，
+以 GitHub Pages 托管的靜態網站。羊皮紙 × 煉金術風格，
 目錄頁可依「掌管行星 / 代表元素 / 魔法屬性」篩選藥草。
 
-## 檔案結構
+## 檔案結構（全部扁平，直接全部上傳到 repository 根目錄）
 
 ```
-├── index.html          # 目錄頁（篩選 + 卡片列表）
-├── herb.html           # 藥草詳情頁（依 ?id= 顯示對應條目）
-├── assets/
-│   ├── style.css       # 羊皮紙 + 煉金術樣式
-│   └── app.js          # 篩選與渲染邏輯（一般不需要改）
-└── data/
-    └── herbs.js        # ★ 所有藥草資料都在這裡，新增/修改只動這支檔案
+index.html     目錄頁（篩選 + 卡片列表 + 備份工具列）
+herb.html      藥草詳情頁（依 ?id= 顯示對應條目）
+edit.html      ✎ 網頁編輯器（新增 / 修改藥草條目，含圖片上傳）
+style.css      羊皮紙 + 煉金術樣式
+app.js         篩選、渲染、編輯器、備份邏輯（一般不需要改）
+herbs.js       書籍內建條目（唯讀）
 ```
 
-## 上架到 GitHub Pages（約 5 分鐘）
+## 上架到 GitHub Pages
 
-1. 在 GitHub 開一個新 repository，例如 `grimoire-herbarium`
-2. 把本資料夾所有檔案上傳到 repository 根目錄（`Add file → Upload files`）
-3. 進入 `Settings → Pages`，Source 選 `Deploy from a branch`，
-   Branch 選 `main` / `/ (root)`，儲存
-4. 等約 1 分鐘，即可透過 `https://你的帳號.github.io/grimoire-herbarium/` 訪問
+1. 在 GitHub 開一個新 repository（需設為 **Public**，私有 repo 的 Pages 要付費）
+2. 把上面 6 個檔案**全部上傳到 repository 根目錄**（不要建子資料夾）
+3. `Settings → Pages` → Source 選 `Deploy from a branch` → `main` / `/ (root)`
+4. 約 1 分鐘後造訪 `https://你的帳號.github.io/repo名稱/`
 
-## 如何新增一筆藥草
+> 若畫面沒有樣式、篩選選項空白，幾乎都是「檔案沒全部上傳」或
+> 「上傳時建了子資料夾導致路徑 404」，請檢查 repository 根目錄
+> 是否同時存在 index.html、herb.html、edit.html、style.css、app.js、herbs.js。
 
-1. 編輯 `data/herbs.js`，複製一份現有條目（大括號 `{ ... }` 整段），貼在 `];` 之前
-2. 修改各欄位：
-   - `id`：唯一英文代號（網址用，例如 `"rosemary"`），不能重複、不能有空白
-   - `name` / `english` / `latin`：中文名、英文名、學名
-   - `planet`：掌管行星（太陽 / 月亮 / 水星 / 金星 / 火星 / 木星 / 土星）
-   - `element`：代表元素（火 / 水 / 風 / 土）
-   - `deities`：相關神靈陣列
-   - `magicProperties`：魔法屬性陣列（目錄頁的篩選選項會自動從所有條目收集）
-   - `sections`：內文，每個 `{ title, paragraphs }` 是一個小節，
-     `paragraphs` 是字串陣列，一個字串一個段落
-   - `recipes`：配方（可整段省略），材料寫在 `ingredients: [{amount, item}]`
-3. Commit 儲存，網站約 1 分鐘後自動更新
+## 在網頁上新增藥草（不用碰程式碼）
 
-## 篩選邏輯
+1. 首頁點「✎ 編纂新條目」
+2. 填寫名稱、行星、元素、神靈、魔法屬性，可上傳藥草圖片（自動壓縮）
+3. 「＋ 新增章節」加內文（段落間空一行）；「＋ 新增配方」加配方，
+   材料格式每行一筆：`份量｜材料`（例如 `250ml（1杯）｜滾水`）
+4. 儲存後立即出現在目錄與篩選中
 
-- 行星、元素為單選群組（同一群組內多選為 OR）
-- 魔法屬性多選為 OR（任一命中即顯示）
-- 不同群組之間為 AND
-- 搜尋框比對名稱、學名、神靈與屬性
+## 重要：資料存在哪裡
 
-## 進階（可選）
+GitHub Pages 是純靜態托管，網頁**無法直接修改 GitHub 上的檔案**，
+因此自行編纂的條目（含圖片）儲存在**該瀏覽器的本機儲存（localStorage）**：
 
-- 想換行星/元素的煉金術符號：修改 `assets/app.js` 最上方的
-  `PLANET_SYMBOLS` / `ELEMENT_SYMBOLS`
-- 新增資料欄位（如「產地」「採收時節」）：在條目物件加上欄位，
-  再於 `app.js` 的 `initHerb()` 或卡片模板中輸出即可
+- ✅ 同一台裝置、同一瀏覽器：永久保存，編輯、刪除都可以
+- ⚠️ 清除瀏覽器資料 / 換手機 / 換瀏覽器：自訂條目不會跟著走
+- 💾 請定期在首頁按「⤓ 導出備份」下載 JSON；換裝置時用「⤒ 導入備份」還原
+
+書籍內建條目（herbs.js）永遠存在、唯讀，想修改其內容請用「編纂新條目」另建一筆。
