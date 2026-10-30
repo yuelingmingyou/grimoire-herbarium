@@ -1,0 +1,177 @@
+/* ============ 羊皮紙 × 煉金術 ============ */
+:root{
+  --ink:#3a2c1c;
+  --ink-soft:#5d4a30;
+  --faded:#8a7350;
+  --gold:#9a6b1f;
+  --gold-soft:#b98a3a;
+  --paper:#efe3c4;
+  --paper-deep:#e3d2a8;
+  --edge:#a8864f;
+  --seal:#7a2e1d;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"Noto Serif TC",serif;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 800px at 15% -10%, rgba(120,90,40,.28), transparent 60%),
+    radial-gradient(1000px 700px at 110% 110%, rgba(80,55,25,.30), transparent 55%),
+    radial-gradient(700px 500px at 80% 0%, rgba(60,40,15,.18), transparent 60%),
+    linear-gradient(160deg,#3b2c17 0%,#2c2010 100%);
+  min-height:100vh;
+}
+.page-wrap{max-width:1000px;margin:0 auto;padding:48px 20px 32px;}
+
+/* ---------- 頁首 ---------- */
+.site-header{text-align:center;margin-bottom:34px;color:var(--paper);}
+.alchemy-ring{
+  width:64px;height:64px;margin:0 auto 14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:34px;color:var(--gold-soft);
+  border:2px solid var(--gold-soft);border-radius:50%;
+  box-shadow:0 0 0 5px rgba(185,138,58,.15), inset 0 0 12px rgba(185,138,58,.35);
+  transform:rotate(0deg);
+}
+.site-title{
+  font-size:clamp(30px,5vw,46px);letter-spacing:.35em;text-indent:.35em;
+  color:#f0e2bd;text-shadow:0 2px 10px rgba(0,0,0,.5);
+}
+.site-subtitle{
+  margin-top:10px;font-family:"Cinzel",serif;font-size:13px;letter-spacing:.18em;
+  color:#c9ab6e;
+}
+
+/* ---------- 羊皮紙卡片 ---------- */
+.paper{
+  position:relative;
+  background:
+    radial-gradient(600px 200px at 20% 0%, rgba(255,250,230,.55), transparent 70%),
+    radial-gradient(500px 300px at 100% 100%, rgba(150,110,50,.20), transparent 60%),
+    linear-gradient(175deg,var(--paper) 0%,var(--paper-deep) 100%);
+  border:1px solid var(--edge);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.45),
+    inset 0 0 60px rgba(140,100,40,.18);
+  padding:34px 38px;
+}
+.paper::before{ /* 雙框線 */
+  content:"";position:absolute;inset:8px;pointer-events:none;
+  border:1px solid rgba(154,107,31,.55);
+}
+.paper::after{ /* 四角裝飾 */
+  content:"❦                    ❦\A\A\A\A\A\A❦                    ❦";
+  white-space:pre;position:absolute;inset:10px 16px;pointer-events:none;
+  color:rgba(154,107,31,.7);font-size:14px;line-height:1;
+}
+
+/* ---------- 篩選面板 ---------- */
+.filter-panel{margin-bottom:30px;}
+.filter-row{display:flex;gap:14px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed rgba(154,107,31,.4);}
+.filter-row:last-of-type{border-bottom:none;}
+.filter-label{flex:0 0 76px;font-weight:700;color:var(--seal);letter-spacing:.12em;padding-top:4px;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{
+  font-family:inherit;font-size:14px;color:var(--ink-soft);
+  background:rgba(255,250,235,.45);
+  border:1px solid var(--edge);border-radius:999px;
+  padding:3px 13px;cursor:pointer;
+  transition:all .15s ease;
+}
+.chip:hover{background:rgba(255,246,220,.9);transform:translateY(-1px);}
+.chip.active{
+  background:var(--seal);color:#f6e9c8;border-color:var(--seal);
+  box-shadow:0 2px 6px rgba(122,46,29,.4);
+}
+.chip .sym{color:var(--gold);margin-right:4px;}
+.chip.active .sym{color:#f0c96a;}
+.search-input{
+  flex:1;font-family:inherit;font-size:15px;color:var(--ink);
+  background:rgba(255,250,235,.6);border:1px solid var(--edge);
+  padding:6px 14px;outline:none;
+}
+.search-input:focus{border-color:var(--seal);box-shadow:0 0 0 3px rgba(122,46,29,.15);}
+.filter-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:13px;color:var(--faded);}
+.link-btn{font-family:inherit;background:none;border:none;color:var(--seal);cursor:pointer;font-size:13px;text-decoration:underline dotted;}
+.link-btn:hover{color:#a03d27;}
+
+/* ---------- 藥草卡片格 ---------- */
+.herb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px;}
+.herb-card{
+  display:block;text-decoration:none;color:inherit;cursor:pointer;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.herb-card:hover{transform:translateY(-4px) rotate(-.3deg);}
+.herb-card:hover .paper{box-shadow:0 16px 38px rgba(0,0,0,.55), inset 0 0 60px rgba(140,100,40,.22);}
+.card-head{display:flex;align-items:flex-start;gap:14px;}
+.card-sigil{
+  flex:0 0 52px;height:52px;border:1.5px solid var(--gold);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;color:var(--seal);background:rgba(255,250,235,.5);
+}
+.card-name{font-size:24px;font-weight:700;letter-spacing:.1em;}
+.card-latin{font-family:"Cinzel",serif;font-style:italic;font-size:14px;color:var(--faded);margin-top:2px;}
+.card-meta{margin-top:10px;font-size:13.5px;color:var(--ink-soft);display:flex;gap:14px;flex-wrap:wrap;}
+.card-meta b{color:var(--seal);font-weight:600;}
+.card-props{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{
+  font-size:12px;color:var(--ink-soft);
+  border:1px solid rgba(154,107,31,.5);border-radius:3px;
+  padding:1px 8px;background:rgba(255,250,235,.4);
+}
+
+/* ---------- 詳情頁 ---------- */
+.back-nav{margin-bottom:18px;}
+.back-nav a{color:#d8bc82;text-decoration:none;font-size:15px;letter-spacing:.08em;}
+.back-nav a:hover{color:#f0d79e;}
+.herb-article{padding:46px 52px;}
+.herb-title-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;border-bottom:2px solid var(--edge);padding-bottom:18px;margin-bottom:8px;}
+.herb-sigil{
+  width:74px;height:74px;border:2px solid var(--gold);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:38px;color:var(--seal);background:rgba(255,250,235,.55);
+  box-shadow:inset 0 0 14px rgba(154,107,31,.3);
+}
+.herb-name{font-size:clamp(30px,4.5vw,40px);font-weight:700;letter-spacing:.14em;}
+.herb-en{font-family:"Cinzel",serif;font-style:italic;font-size:19px;color:var(--gold);margin-left:8px;}
+.herb-latin{font-family:"Cinzel",serif;font-style:italic;font-size:15px;color:var(--faded);margin-top:4px;}
+.divider-orn{text-align:center;color:var(--gold);letter-spacing:.6em;font-size:14px;margin:14px 0 22px;}
+
+.meta-table{display:grid;grid-template-columns:110px 1fr;gap:8px 18px;font-size:15px;margin-bottom:8px;}
+.meta-table dt{font-weight:700;color:var(--seal);letter-spacing:.1em;padding-top:1px;}
+.meta-table dd{color:var(--ink-soft);line-height:1.75;}
+
+.section-title{
+  font-size:21px;letter-spacing:.22em;color:var(--seal);
+  margin:34px 0 12px;padding-bottom:6px;
+  border-bottom:1px solid rgba(154,107,31,.5);
+  display:flex;align-items:center;gap:10px;
+}
+.section-title::before{content:"🜔";color:var(--gold);font-size:17px;}
+.herb-section p{margin:10px 0;line-height:2;text-align:justify;color:var(--ink-soft);}
+
+/* 配方 */
+.recipe{margin:22px 0;padding:20px 24px;background:rgba(255,250,235,.42);border:1px dashed rgba(154,107,31,.55);}
+.recipe-name{font-size:19px;font-weight:700;color:var(--ink);letter-spacing:.08em;}
+.recipe-en{font-family:"Cinzel",serif;font-style:italic;font-size:14px;color:var(--faded);margin-left:8px;}
+.recipe-ing{list-style:none;margin:12px 0;}
+.recipe-ing li{display:flex;align-items:baseline;gap:8px;padding:3px 0;font-size:14.5px;color:var(--ink-soft);}
+.ing-amt{color:var(--seal);white-space:nowrap;}
+.ing-dots{flex:1;border-bottom:1.5px dotted rgba(122,90,45,.55);transform:translateY(-4px);}
+.recipe-steps{font-size:14.5px;line-height:1.95;color:var(--ink-soft);text-align:justify;}
+.note-box{
+  margin-top:12px;padding:16px 20px;font-size:14px;line-height:1.9;
+  background:rgba(122,46,29,.07);border-left:3px solid var(--seal);color:var(--ink-soft);
+}
+
+.site-footer{text-align:center;color:#b99c62;font-size:12.5px;letter-spacing:.12em;margin-top:36px;}
+.site-footer code{background:rgba(255,255,255,.08);padding:1px 6px;border-radius:3px;}
+
+@media (max-width:640px){
+  .paper{padding:26px 22px;}
+  .herb-article{padding:32px 24px;}
+  .filter-row{flex-direction:column;gap:8px;}
+  .meta-table{grid-template-columns:1fr;gap:2px;}
+  .meta-table dt{margin-top:8px;}
+}
